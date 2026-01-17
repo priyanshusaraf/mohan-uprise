@@ -80,3 +80,52 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .hero-slider {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: #0b1220;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.05);
+    animation: hero-fade 24s infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    will-change: opacity, transform;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 16, 31, 0.55);
+  }
+}
+
+@keyframes hero-fade {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  6% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  26% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  33% {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}

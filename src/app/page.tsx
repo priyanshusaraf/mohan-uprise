@@ -15,21 +15,48 @@ import { company } from "@/content/company";
 import { ArrowRight, PhoneCall, Mail } from "lucide-react";
 
 export default function Home() {
+  const heroSlides = [
+    "/Ongoing/Greenfield City Phase 2.jpg",
+    "/Completed/Shantikunj.jpeg",
+    "/Ongoing/Aqua Waves.jpg",
+    "/Completed/B.P. Poddar Hospital - New Wing.png",
+    "/Ongoing/Natural Luxuria.jpg",
+    "/Completed/Natural City Birati.jpg",
+  ].map((src) => encodeURI(src));
+
   return (
     <div className="font-[family-name:var(--font-geist-sans)]">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-secondary/60 via-background to-accent/40">
-        <Container className="grid gap-10 py-14 lg:grid-cols-[1.15fr_.85fr] lg:items-center lg:py-20">
+      <section className="relative min-h-[85vh] overflow-hidden bg-slate-950 text-white">
+        <div className="hero-slider">
+          {heroSlides.map((src, index) => (
+            <div
+              key={src}
+              className="hero-slide"
+              style={{
+                backgroundImage: `url("${src}")`,
+                animationDelay: `${index * 6}s`,
+                animationDuration: `${heroSlides.length * 6}s`,
+              }}
+            />
+          ))}
+          <div className="hero-overlay" />
+        </div>
+        <Container className="relative z-10 grid gap-10 py-20 lg:py-28">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="secondary">Construction • Real Estate</Badge>
-              <Badge variant="secondary">Kolkata</Badge>
+              <Badge className="bg-white/15 text-white hover:bg-white/20">
+                Construction • Real Estate
+              </Badge>
+              <Badge className="bg-white/15 text-white hover:bg-white/20">
+                Kolkata
+              </Badge>
             </div>
-            <h1 className="text-pretty text-3xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="text-pretty text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
               Building durable, value-driven spaces with integrity and
               precision.
             </h1>
-            <p className="max-w-2xl text-pretty text-muted-foreground sm:text-lg">
+            <p className="max-w-2xl text-pretty text-white/80 sm:text-lg">
               {company.name} executes residential, commercial, and
               infrastructural projects with a strong focus on quality, safety,
               transparency, and on-time delivery.
@@ -40,59 +67,26 @@ export default function Home() {
                   Explore projects <ArrowRight className="ml-2 size-4" />
                 </Link>
               </Button>
-              <Button variant="outline" asChild>
+              <Button
+                variant="outline"
+                className="border-white/50 bg-white/10 text-white hover:bg-white/20"
+                asChild
+              >
                 <a href={`tel:${company.phone}`}>
                   <PhoneCall className="mr-2 size-4" />
                   Call {company.phone}
                 </a>
               </Button>
-              <Button variant="outline" asChild>
+              <Button
+                variant="outline"
+                className="border-white/50 bg-white/10 text-white hover:bg-white/20"
+                asChild
+              >
                 <a href={`mailto:${company.email}`}>
                   <Mail className="mr-2 size-4" />
                   Email us
                 </a>
               </Button>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="rounded-2xl border bg-card shadow-sm">
-              <div className="p-3 sm:p-4">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-secondary">
-                  <Image
-                    src="/Ongoing/Greenfield City Phase 2.jpg"
-                    alt="Featured project site"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </div>
-              <Separator />
-              <div className="grid gap-3 p-4 sm:grid-cols-3">
-                <Card>
-                  <CardContent className="p-4">
-                    <p className="text-xs text-muted-foreground">Quality</p>
-                    <p className="mt-1 text-sm font-semibold">
-                      Strict controls
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-4">
-                    <p className="text-xs text-muted-foreground">Safety</p>
-                    <p className="mt-1 text-sm font-semibold">
-                      Site protocols
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="p-4">
-                    <p className="text-xs text-muted-foreground">Delivery</p>
-                    <p className="mt-1 text-sm font-semibold">On time</p>
-                  </CardContent>
-                </Card>
-              </div>
             </div>
           </div>
         </Container>
